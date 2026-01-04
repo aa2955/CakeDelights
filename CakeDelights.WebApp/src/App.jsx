@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useId } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Plus, Edit2, Trash2, X, LogOut, Lock, Upload } from 'lucide-react';
 
 const CakeDelights = () => {
@@ -138,7 +138,6 @@ const CakeDelights = () => {
   };
 
   const MenuForm = ({ item, onSubmit, onCancel }) => {
-    const fileInputId = useId();
     const [formData, setFormData] = useState({
       name: item?.name || '',
       description: item?.description || '',
@@ -198,13 +197,13 @@ const CakeDelights = () => {
     };
 
     return (
-      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50 overflow-y-auto backdrop-blur-sm">
-        <div className="bg-white rounded-2xl p-8 max-w-2xl w-full my-8 shadow-2xl">
-          <div className="flex justify-between items-center mb-6">
-            <h3 className="text-2xl font-bold bg-gradient-to-r from-pink-600 to-pink-500 bg-clip-text text-transparent">
+      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50 overflow-y-auto">
+        <div className="bg-white rounded-lg p-6 max-w-2xl w-full my-8">
+          <div className="flex justify-between items-center mb-4">
+            <h3 className="text-xl font-bold text-pink-600">
               {item ? 'Edit Item' : 'Add New Item'}
             </h3>
-            <button type="button" onClick={onCancel} className="text-gray-400 hover:text-gray-600 focus:outline-none transition">
+            <button onClick={onCancel} className="text-gray-500 hover:text-gray-700">
               <X size={24} />
             </button>
           </div>
@@ -215,9 +214,8 @@ const CakeDelights = () => {
                 type="text"
                 value={formData.name}
                 onChange={(e) => setFormData({...formData, name: e.target.value})}
-                className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400 focus:border-transparent transition"
+                className="w-full px-3 py-2 border border-pink-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400"
                 placeholder="e.g., Chocolate Cake"
-                aria-label="Item Name"
               />
             </div>
 
@@ -227,9 +225,8 @@ const CakeDelights = () => {
                 type="text"
                 value={formData.category}
                 onChange={(e) => setFormData({...formData, category: e.target.value})}
-                className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400 focus:border-transparent transition"
+                className="w-full px-3 py-2 border border-pink-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400"
                 placeholder="e.g., Cakes, Pastries, Cookies"
-                aria-label="Category"
               />
             </div>
 
@@ -238,10 +235,9 @@ const CakeDelights = () => {
               <textarea
                 value={formData.description}
                 onChange={(e) => setFormData({...formData, description: e.target.value})}
-                className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400 focus:border-transparent transition"
+                className="w-full px-3 py-2 border border-pink-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400"
                 rows="3"
                 placeholder="Describe your item..."
-                aria-label="Description"
               />
             </div>
 
@@ -251,7 +247,7 @@ const CakeDelights = () => {
                 type="text"
                 value={formData.flavors}
                 onChange={(e) => setFormData({...formData, flavors: e.target.value})}
-                className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400 focus:border-transparent transition"
+                className="w-full px-3 py-2 border border-pink-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400"
                 placeholder="e.g., Vanilla, Chocolate, Strawberry"
               />
             </div>
@@ -262,7 +258,7 @@ const CakeDelights = () => {
                 type="text"
                 value={formData.servings}
                 onChange={(e) => setFormData({...formData, servings: e.target.value})}
-                className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400 focus:border-transparent transition"
+                className="w-full px-3 py-2 border border-pink-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400"
                 placeholder="e.g., Serves 10-12 people"
               />
             </div>
@@ -275,22 +271,20 @@ const CakeDelights = () => {
                     type="text"
                     value={sizeOption.size}
                     onChange={(e) => updateSize(index, 'size', e.target.value)}
-                    className="flex-1 px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400 focus:border-transparent transition"
+                    className="flex-1 px-3 py-2 border border-pink-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400"
                     placeholder="Size (e.g., 1kg, Small, 6 inch)"
                   />
                   <input
                     type="text"
                     value={sizeOption.price}
                     onChange={(e) => updateSize(index, 'price', e.target.value)}
-                    className="flex-1 px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400 focus:border-transparent transition"
+                    className="flex-1 px-3 py-2 border border-pink-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400"
                     placeholder="Price (e.g., ₹500)"
                   />
                   {formData.sizes.length > 1 && (
                     <button
-                      type="button"
                       onClick={() => removeSize(index)}
-                      className="px-4 py-2.5 bg-red-500 text-white rounded-lg hover:bg-red-600 focus:outline-none transition"
-                      aria-label="Remove size"
+                      className="px-3 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
                     >
                       <X size={18} />
                     </button>
@@ -298,9 +292,8 @@ const CakeDelights = () => {
                 </div>
               ))}
               <button
-                type="button"
                 onClick={addSizeOption}
-                className="text-pink-600 hover:text-pink-700 text-sm font-semibold focus:outline-none transition"
+                className="text-pink-500 hover:text-pink-600 text-sm font-semibold"
               >
                 + Add Another Size
               </button>
@@ -308,14 +301,13 @@ const CakeDelights = () => {
 
             <div className="mb-4">
               <label className="block text-gray-700 mb-2 font-semibold">Image</label>
-              <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center hover:border-pink-400 transition">
+              <div className="border-2 border-dashed border-pink-300 rounded-lg p-4 text-center">
                 {formData.image ? (
                   <div className="relative">
-                    <img src={formData.image} alt={formData.name || 'Preview image'} className="max-h-48 mx-auto rounded-lg" />
+                    <img src={formData.image} alt="Preview" className="max-h-48 mx-auto rounded-lg" />
                     <button
-                      type="button"
                       onClick={() => setFormData({...formData, image: ''})}
-                      className="mt-2 text-red-500 hover:text-red-600 text-sm focus:outline-none transition"
+                      className="mt-2 text-red-500 hover:text-red-600 text-sm"
                     >
                       Remove Image
                     </button>
@@ -325,15 +317,15 @@ const CakeDelights = () => {
                     <Upload className="mx-auto text-pink-400 mb-2" size={32} />
                     <p className="text-gray-600 mb-2">Click to upload image</p>
                     <input
-                      id={fileInputId}
                       type="file"
                       accept="image/*"
                       onChange={handleImageUpload}
                       className="hidden"
+                      id="image-upload"
                     />
                     <label
-                      htmlFor={fileInputId}
-                      className="cursor-pointer bg-gradient-to-r from-pink-500 to-pink-600 text-white px-4 py-2 rounded-lg hover:from-pink-600 hover:to-pink-700 inline-block focus:outline-none transition"
+                      htmlFor="image-upload"
+                      className="cursor-pointer bg-pink-500 text-white px-4 py-2 rounded-lg hover:bg-pink-600 inline-block"
                     >
                       Choose Image
                     </label>
@@ -345,16 +337,14 @@ const CakeDelights = () => {
 
             <div className="flex gap-2 mt-6">
               <button
-                type="button"
                 onClick={handleSubmit}
-                className="flex-1 bg-gradient-to-r from-pink-500 to-pink-600 text-white py-2.5 rounded-lg hover:from-pink-600 hover:to-pink-700 transition focus:outline-none focus:ring-2 focus:ring-pink-400 font-semibold"
+                className="flex-1 bg-pink-500 text-white py-2 rounded-lg hover:bg-pink-600 transition"
               >
                 {item ? 'Update' : 'Add'}
               </button>
               <button
-                type="button"
                 onClick={onCancel}
-                className="flex-1 bg-gray-300 text-gray-700 py-2.5 rounded-lg hover:bg-gray-400 transition focus:outline-none font-semibold"
+                className="flex-1 bg-gray-300 text-gray-700 py-2 rounded-lg hover:bg-gray-400 transition"
               >
                 Cancel
               </button>
@@ -374,11 +364,11 @@ const CakeDelights = () => {
     };
 
     return (
-      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50 backdrop-blur-sm">
-        <div className="bg-white rounded-2xl p-8 max-w-md w-full shadow-2xl">
-          <div className="flex justify-between items-center mb-6">
-            <h3 className="text-2xl font-bold bg-gradient-to-r from-pink-600 to-pink-500 bg-clip-text text-transparent">Edit Social Links</h3>
-            <button type="button" onClick={() => setEditingSocial(false)} className="text-gray-400 hover:text-gray-600 focus:outline-none transition">
+      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+        <div className="bg-white rounded-lg p-6 max-w-md w-full">
+          <div className="flex justify-between items-center mb-4">
+            <h3 className="text-xl font-bold text-pink-600">Edit Social Links</h3>
+            <button onClick={() => setEditingSocial(false)} className="text-gray-500 hover:text-gray-700">
               <X size={24} />
             </button>
           </div>
@@ -389,7 +379,7 @@ const CakeDelights = () => {
                 type="text"
                 value={tempLinks.instagram}
                 onChange={(e) => setTempLinks({...tempLinks, instagram: e.target.value})}
-                className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400 focus:border-transparent transition"
+                className="w-full px-3 py-2 border border-pink-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400"
                 placeholder="https://instagram.com/yourpage"
               />
             </div>
@@ -399,22 +389,20 @@ const CakeDelights = () => {
                 type="text"
                 value={tempLinks.facebook}
                 onChange={(e) => setTempLinks({...tempLinks, facebook: e.target.value})}
-                className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400 focus:border-transparent transition"
+                className="w-full px-3 py-2 border border-pink-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400"
                 placeholder="https://facebook.com/yourpage"
               />
             </div>
             <div className="flex gap-2">
               <button
-                type="button"
                 onClick={handleSave}
-                className="flex-1 bg-gradient-to-r from-pink-500 to-pink-600 text-white py-2.5 rounded-lg hover:from-pink-600 hover:to-pink-700 transition focus:outline-none focus:ring-2 focus:ring-pink-400 font-semibold"
+                className="flex-1 bg-pink-500 text-white py-2 rounded-lg hover:bg-pink-600 transition"
               >
                 Save
               </button>
               <button
-                type="button"
                 onClick={() => setEditingSocial(false)}
-                className="flex-1 bg-gray-300 text-gray-700 py-2.5 rounded-lg hover:bg-gray-400 transition focus:outline-none font-semibold"
+                className="flex-1 bg-gray-300 text-gray-700 py-2 rounded-lg hover:bg-gray-400 transition"
               >
                 Cancel
               </button>
@@ -434,31 +422,30 @@ const CakeDelights = () => {
     };
 
     return (
-      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50 backdrop-blur-sm">
-        <div className="bg-white rounded-2xl p-8 max-w-sm w-full shadow-2xl">
-          <div className="flex justify-between items-center mb-6">
-            <h3 className="text-2xl font-bold bg-gradient-to-r from-pink-600 to-pink-500 bg-clip-text text-transparent">Admin Login</h3>
-            <button type="button" onClick={() => setShowLogin(false)} className="text-gray-400 hover:text-gray-600 focus:outline-none transition">
+      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+        <div className="bg-white rounded-lg p-6 max-w-sm w-full">
+          <div className="flex justify-between items-center mb-4">
+            <h3 className="text-xl font-bold text-pink-600">Admin Login</h3>
+            <button onClick={() => setShowLogin(false)} className="text-gray-500 hover:text-gray-700">
               <X size={24} />
             </button>
           </div>
           <div>
             <div className="mb-4">
-              <label className="block text-gray-700 mb-2 font-semibold">Password</label>
+              <label className="block text-gray-700 mb-2">Password</label>
               <input
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 onKeyDown={handleKeyPress}
-                className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400 focus:border-transparent transition"
+                className="w-full px-3 py-2 border border-pink-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400"
                 autoFocus
               />
-              <p className="text-xs text-gray-500 mt-2">Demo password: admin123</p>
+              <p className="text-xs text-gray-500 mt-1">Demo password: admin123</p>
             </div>
             <button
-              type="button"
               onClick={handleLogin}
-              className="w-full bg-gradient-to-r from-pink-500 to-pink-600 text-white py-2.5 rounded-lg hover:from-pink-600 hover:to-pink-700 transition focus:outline-none focus:ring-2 focus:ring-pink-400 font-semibold"
+              className="w-full bg-pink-500 text-white py-2 rounded-lg hover:bg-pink-600 transition"
             >
               Login
             </button>
@@ -473,20 +460,20 @@ const CakeDelights = () => {
   if (loading) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-pink-50 to-pink-100 flex items-center justify-center">
-        <div className="text-pink-600 text-xl font-semibold">Loading...</div>
+        <div className="text-pink-600 text-xl">Loading...</div>
       </div>
     );
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-gradient-to-br from-pink-50 via-pink-100 to-pink-200">
-      <header className="relative bg-white shadow-md border-b border-pink-200">
-        <div className="container mx-auto px-4 py-8">
-          <div className="flex flex-col items-center relative">
+    <div className="min-h-screen bg-gradient-to-br from-pink-50 to-pink-100">
+      <header className="bg-gradient-to-r from-pink-50 via-white to-pink-50 shadow-lg border-b-4 border-pink-200">
+        <div className="container mx-auto px-4 py-6">
+          <div className="flex flex-col items-center">
             <div className="flex items-center gap-4 mb-4">
-              <div className="bg-gradient-to-br from-pink-50 to-pink-100 rounded-full p-3 shadow-lg">
+              <div className="bg-white rounded-full p-3 shadow-md">
                 <div className="w-16 h-16 flex items-center justify-center">
-                  <svg viewBox="0 0 200 200" className="w-full h-full" aria-hidden>
+                  <svg viewBox="0 0 200 200" className="w-full h-full">
                     <circle cx="100" cy="140" r="50" fill="#FF1493" opacity="0.2"/>
                     <ellipse cx="100" cy="120" rx="60" ry="40" fill="#FF69B4"/>
                     <ellipse cx="100" cy="80" rx="50" ry="30" fill="#FFB6C1"/>
@@ -500,7 +487,7 @@ const CakeDelights = () => {
                 </div>
               </div>
               <div className="text-center">
-                <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-pink-600 to-pink-500 bg-clip-text text-transparent mb-2" style={{ fontFamily: 'cursive' }}>
+                <h1 className="text-5xl font-bold bg-gradient-to-r from-pink-600 to-pink-400 bg-clip-text text-transparent mb-2" style={{ fontFamily: 'cursive' }}>
                   Cake Delights
                 </h1>
                 <p className="text-red-500 text-base font-medium italic tracking-wide">Delight in your Reality</p>
@@ -522,24 +509,22 @@ const CakeDelights = () => {
               </span>
             </div>
 
-            <div className="absolute top-8 right-4">
+            <div className="absolute top-6 right-4">
               {isAdmin ? (
                 <button
-                  type="button"
                   onClick={handleLogout}
-                  className="flex items-center gap-2 bg-gradient-to-r from-pink-500 to-pink-600 text-white px-5 py-2.5 rounded-full hover:from-pink-600 hover:to-pink-700 transition shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-pink-400 font-semibold"
+                  className="flex items-center gap-2 bg-gradient-to-r from-pink-500 to-pink-600 text-white px-6 py-3 rounded-full hover:from-pink-600 hover:to-pink-700 transition shadow-lg hover:shadow-xl"
                 >
-                  <LogOut size={18} />
-                  <span className="hidden sm:inline">Logout</span>
+                  <LogOut size={20} />
+                  <span className="font-semibold">Logout</span>
                 </button>
               ) : (
                 <button
-                  type="button"
                   onClick={() => setShowLogin(true)}
-                  className="flex items-center gap-2 bg-gradient-to-r from-pink-500 to-pink-600 text-white px-5 py-2.5 rounded-full hover:from-pink-600 hover:to-pink-700 transition shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-pink-400 font-semibold"
+                  className="flex items-center gap-2 bg-gradient-to-r from-pink-500 to-pink-600 text-white px-6 py-3 rounded-full hover:from-pink-600 hover:to-pink-700 transition shadow-lg hover:shadow-xl"
                 >
-                  <Lock size={18} />
-                  <span className="hidden sm:inline">Admin</span>
+                  <Lock size={20} />
+                  <span className="font-semibold">Admin</span>
                 </button>
               )}
             </div>
@@ -547,28 +532,24 @@ const CakeDelights = () => {
         </div>
       </header>
 
-      <nav className="bg-gradient-to-r from-pink-500 to-pink-600 shadow-lg">
+      <nav className="bg-pink-500 shadow-lg">
         <div className="container mx-auto px-4">
-          <div className="flex justify-center gap-6">
+          <div className="flex justify-center gap-8">
             <button
-              type="button"
               onClick={() => setActiveSection('bakery')}
-              aria-pressed={activeSection === 'bakery'}
-              className={`py-3 px-6 text-lg font-semibold transition rounded-t-md ${
+              className={`py-4 px-8 text-lg font-semibold transition ${
                 activeSection === 'bakery'
-                  ? 'text-white border-b-4 border-white bg-pink-600/30'
+                  ? 'text-white border-b-4 border-white'
                   : 'text-pink-100 hover:text-white'
               }`}
             >
               Bakery
             </button>
             <button
-              type="button"
               onClick={() => setActiveSection('catering')}
-              aria-pressed={activeSection === 'catering'}
-              className={`py-3 px-6 text-lg font-semibold transition rounded-t-md ${
+              className={`py-4 px-8 text-lg font-semibold transition ${
                 activeSection === 'catering'
-                  ? 'text-white border-b-4 border-white bg-pink-600/30'
+                  ? 'text-white border-b-4 border-white'
                   : 'text-pink-100 hover:text-white'
               }`}
             >
@@ -578,40 +559,39 @@ const CakeDelights = () => {
         </div>
       </nav>
 
-      <main className="flex-grow container mx-auto px-4 py-12">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4 mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-pink-600 to-pink-500 bg-clip-text text-transparent">
+      <main className="container mx-auto px-4 py-8">
+        <div className="flex justify-between items-center mb-6">
+          <h2 className="text-3xl font-bold text-pink-600">
             {activeSection === 'bakery' ? 'Bakery Menu' : 'Catering Menu'}
           </h2>
           {isAdmin && (
             <button
-              type="button"
               onClick={() => setShowAddForm(true)}
-              className="flex items-center gap-2 bg-gradient-to-r from-pink-500 to-pink-600 text-white px-6 py-2.5 rounded-lg hover:from-pink-600 hover:to-pink-700 transition shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-pink-400 font-semibold"
+              className="flex items-center gap-2 bg-pink-500 text-white px-4 py-2 rounded-lg hover:bg-pink-600 transition"
             >
               <Plus size={20} />
-              <span>Add Item</span>
+              Add Item
             </button>
           )}
         </div>
 
         {currentItems.length === 0 ? (
-          <div className="text-center py-16">
-            <p className="text-gray-600 text-lg font-medium">{isAdmin ? 'No items yet. Add your first item!' : 'No items available.'}</p>
+          <div className="text-center py-12">
+            <p className="text-gray-500 text-lg">No items yet. {isAdmin && 'Add your first item!'}</p>
           </div>
         ) : (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {currentItems.map((item) => (
-              <div key={item.id} className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-2xl hover:scale-105 transform transition duration-300">
+              <div key={item.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
                 {item.image && (
-                  <img src={item.image} alt={item.name || 'Item image'} className="w-full h-48 object-cover" />
+                  <img src={item.image} alt={item.name} className="w-full h-48 object-cover" />
                 )}
                 <div className="p-6">
                   <div className="flex justify-between items-start mb-3">
                     <div>
                       <h3 className="text-xl font-bold text-pink-600">{item.name}</h3>
                       {item.category && (
-                        <span className="inline-block bg-gradient-to-r from-pink-100 to-pink-50 text-pink-700 text-xs px-3 py-1 rounded-full mt-2 font-semibold">
+                        <span className="inline-block bg-pink-100 text-pink-600 text-xs px-2 py-1 rounded-full mt-1">
                           {item.category}
                         </span>
                       )}
@@ -619,46 +599,41 @@ const CakeDelights = () => {
                     {isAdmin && (
                       <div className="flex gap-2">
                         <button
-                          type="button"
                           onClick={() => setEditingItem(item)}
-                          className="text-blue-500 hover:text-blue-700 focus:outline-none transition"
-                          aria-label="Edit item"
+                          className="text-blue-500 hover:text-blue-700"
                         >
-                          <Edit2 size={20} />
+                          <Edit2 size={18} />
                         </button>
                         <button
-                          type="button"
                           onClick={() => handleDeleteItem(item.id)}
-                          className="text-red-500 hover:text-red-700 focus:outline-none transition"
-                          aria-label="Delete item"
+                          className="text-red-500 hover:text-red-700"
                         >
-                          <Trash2 size={20} />
+                          <Trash2 size={18} />
                         </button>
                       </div>
                     )}
                   </div>
-                  <p className="text-gray-600 mb-4 text-sm leading-relaxed">{item.description}</p>
+                  <p className="text-gray-600 mb-3">{item.description}</p>
                   
                   {item.flavors && (
-                    <div className="mb-3 pb-3 border-b border-gray-200">
-                      <span className="font-semibold text-gray-700">Flavors:</span>
-                      <p className="text-gray-600 text-sm mt-1">{item.flavors}</p>
+                    <div className="mb-2">
+                      <span className="font-semibold text-gray-700">Flavors: </span>
+                      <span className="text-gray-600">{item.flavors}</span>
                     </div>
                   )}
                   
                   {item.servings && (
-                    <div className="mb-3 pb-3 border-b border-gray-200">
-                      <span className="font-semibold text-gray-700">Servings:</span>
-                      <p className="text-gray-600 text-sm mt-1">{item.servings}</p>
+                    <div className="mb-3">
+                      <span className="font-semibold text-gray-700">Servings: </span>
+                      <span className="text-gray-600">{item.servings}</span>
                     </div>
                   )}
                   
-                  <div className="mt-4 pt-4 border-t border-gray-200">
-                    <p className="font-semibold text-gray-700 mb-3 text-sm">Pricing:</p>
-                    {item.sizes?.map((sizeOption, index) => (
-                      <div key={index} className="flex justify-between items-center mb-2 text-sm">
+                  <div className="border-t pt-3">
+                    {item.sizes.map((sizeOption, index) => (
+                      <div key={index} className="flex justify-between items-center mb-1">
                         <span className="text-gray-700">{sizeOption.size}</span>
-                        <span className="text-pink-600 font-bold text-lg">{sizeOption.price}</span>
+                        <span className="text-pink-500 font-bold">{sizeOption.price}</span>
                       </div>
                     ))}
                   </div>
@@ -669,51 +644,17 @@ const CakeDelights = () => {
         )}
       </main>
 
-      <footer className="bg-white border-t border-pink-200 shadow-lg mt-12">
-        <div className="container mx-auto px-4 py-12">
+      <footer className="bg-gradient-to-r from-pink-600 to-pink-500 text-white py-8 mt-12">
+        <div className="container mx-auto px-4">
           <div className="flex flex-col items-center">
-            <h3 className="text-2xl font-bold bg-gradient-to-r from-pink-600 to-pink-500 bg-clip-text text-transparent mb-6">Follow Us</h3>
-            <div className="flex gap-6 mb-8">
+            <h3 className="text-2xl font-bold mb-4">Follow Us</h3>
+            <div className="flex gap-6 mb-6">
               {socialLinks.instagram && (
                 <a
                   href={socialLinks.instagram}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-gradient-to-br from-pink-500 to-pink-600 text-white p-4 rounded-full hover:scale-110 transition transform shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-pink-400"
-                  aria-label="Instagram"
+                  className="bg-white text-pink-600 p-4 rounded-full hover:bg-pink-50 transition shadow-lg hover:shadow-xl hover:scale-110 transform"
                 >
-                  <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden>
-                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69"/>
-                  </svg>
-                </a>
-              )}
-              {socialLinks.facebook && (
-                <a
-                  href={socialLinks.facebook}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-gradient-to-br from-pink-500 to-pink-600 text-white p-4 rounded-full hover:scale-110 transition transform shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-pink-400"
-                  aria-label="Facebook"
-                >
-                  <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden>
-                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                  </svg>
-                </a>
-              )}
-              {!socialLinks.instagram && !socialLinks.facebook && isAdmin && (
-                <p className="text-gray-500 text-sm font-medium">Click "Edit Social Links" to add your social media</p>
-              )}
-            </div>
-
-            {isAdmin && (
-              <button
-                type="button"
-                onClick={() => setEditingSocial(true)}
-                className="mb-6 text-sm bg-gradient-to-r from-pink-500 to-pink-600 text-white px-6 py-2.5 rounded-lg hover:from-pink-600 hover:to-pink-700 transition font-semibold focus:outline-none focus:ring-2 focus:ring-pink-400"
-              >
-                Edit Social Links
-              </button>
-            )}
-
-            <p className="text-gray-600 text-sm font-medium">© {new Date().getFullYear()} Cake Delights. All rights reserved.</p>
-          </div
+                  <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69
