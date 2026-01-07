@@ -59,13 +59,22 @@ export default function MenuCard({ item }) {
         )}
 
         {/* Sizes & Prices */}
-        <div className="bg-gray-50 rounded-lg p-3 mb-4">
-          <p className="text-xs font-semibold text-gray-700 mb-2">Sizes & Prices:</p>
-          <div className="space-y-1">
+        <div className="bg-gradient-to-br from-pink-50 to-purple-50 rounded-lg p-4 mb-4 border border-pink-100">
+          <p className="text-xs font-bold text-pink-700 mb-3 uppercase tracking-wide">📦 Available Options</p>
+          <div className="space-y-2">
             {item.sizes && item.sizes.map((size, index) => (
-              <div key={index} className="flex justify-between items-center text-sm">
-                <span className="text-gray-700 font-medium">{size.size}</span>
-                <span className="text-pink-600 font-bold">{formatCurrency(size.price)}</span>
+              <div key={index} className="bg-white rounded-lg p-3 hover:shadow-md transition">
+                <div className="flex justify-between items-start gap-2">
+                  <div className="flex-1">
+                    <p className="font-bold text-gray-800">{size.size}</p>
+                    {size.servings && (
+                      <p className="text-xs text-gray-500 mt-1">🍽️ {size.servings}</p>
+                    )}
+                  </div>
+                  <div className="bg-pink-600 text-white px-3 py-1 rounded-full font-bold text-sm">
+                    {formatCurrency(size.price)}
+                  </div>
+                </div>
               </div>
             ))}
           </div>

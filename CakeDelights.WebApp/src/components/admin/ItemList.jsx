@@ -68,13 +68,18 @@ export default function ItemList({ items, onEdit, editingId }) {
             </p>
           )}
 
-          <div className="bg-gray-50 rounded p-2 mb-3">
-            <p className="text-xs font-semibold text-gray-700 mb-1">Sizes & Prices:</p>
-            <div className="space-y-1">
+          <div className="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg p-3 mb-3 border border-blue-200">
+            <p className="text-xs font-bold text-blue-700 mb-2 uppercase tracking-wide">📦 Sizes & Prices</p>
+            <div className="space-y-2">
               {item.sizes.map((size, idx) => (
-                <div key={idx} className="flex justify-between text-xs text-gray-600">
-                  <span>{size.size}</span>
-                  <span className="font-semibold">{formatCurrency(size.price)}</span>
+                <div key={idx} className="bg-white rounded-lg p-2 hover:shadow-md transition">
+                  <div className="flex justify-between items-start mb-1">
+                    <span className="font-semibold text-gray-800">{size.size}</span>
+                    <span className="bg-blue-600 text-white px-2 py-0.5 rounded-full text-xs font-bold">{formatCurrency(size.price)}</span>
+                  </div>
+                  {size.servings && (
+                    <div className="text-gray-600 text-xs ml-0">🍽️ {size.servings}</div>
+                  )}
                 </div>
               ))}
             </div>

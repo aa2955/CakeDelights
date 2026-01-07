@@ -38,7 +38,7 @@ function AppContent() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-pink-light flex flex-col">
+    <div className="min-h-screen bg-gradient-pink-light flex flex-col relative">
       <Header onAdminClick={handleAdminClick} isAdmin={isAdmin} />
       {!showAdminPanel && <Navigation activeSection={activeSection} setActiveSection={setActiveSection} />}
       
@@ -58,6 +58,15 @@ function AppContent() {
           onClose={() => setShowLoginModal(false)}
         />
       )}
+
+      {/* Floating Admin Button */}
+      <button
+        onClick={handleAdminClick}
+        className="fixed bottom-6 right-6 w-14 h-14 rounded-full bg-gradient-to-r from-pink-600 to-pink-700 text-white shadow-xl hover:shadow-2xl hover:from-pink-700 hover:to-pink-800 transition-all duration-300 hover:scale-110 active:scale-95 flex items-center justify-center z-40 group"
+        title={isAdmin ? "Admin Panel" : "Admin Login"}
+      >
+        <span className="text-2xl group-hover:rotate-90 transition-transform duration-300">⚙️</span>
+      </button>
     </div>
   )
 }

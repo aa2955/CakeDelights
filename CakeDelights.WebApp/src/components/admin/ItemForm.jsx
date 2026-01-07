@@ -10,7 +10,7 @@ export default function ItemForm({ section, editingItem, onEditingComplete }) {
     description: '',
     flavors: '',
     servings: '',
-    sizes: [{ size: '', price: '' }],
+    sizes: [{ size: '', price: '', servings: '' }],
     image: null
   })
   const [imagePreview, setImagePreview] = useState(null)
@@ -33,7 +33,7 @@ export default function ItemForm({ section, editingItem, onEditingComplete }) {
       description: '',
       flavors: '',
       servings: '',
-      sizes: [{ size: '', price: '' }],
+      sizes: [{ size: '', price: '', servings: '' }],
       image: null
     })
     setImagePreview(null)
@@ -63,7 +63,7 @@ export default function ItemForm({ section, editingItem, onEditingComplete }) {
   const addSizeOption = () => {
     setFormData(prev => ({
       ...prev,
-      sizes: [...prev.sizes, { size: '', price: '' }]
+      sizes: [...prev.sizes, { size: '', price: '', servings: '' }]
     }))
   }
 
@@ -239,36 +239,50 @@ export default function ItemForm({ section, editingItem, onEditingComplete }) {
           <label className="block text-sm font-semibold text-gray-700 mb-2">
             Sizes & Prices *
           </label>
-          <div className="space-y-2">
+          <div className="space-y-3">
             {formData.sizes.map((size, index) => (
-              <div key={index} className="flex gap-2 items-end">
-                <div className="flex-1">
-                  <input
-                    type="text"
-                    placeholder="Size (e.g., 1kg)"
-                    value={size.size}
-                    onChange={(e) => handleSizeChange(index, 'size', e.target.value)}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 text-sm"
-                  />
-                </div>
-                <div className="flex-1">
-                  <input
-                    type="number"
-                    placeholder="Price ($)"
-                    value={size.price}
-                    onChange={(e) => handleSizeChange(index, 'price', e.target.value)}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 text-sm"
-                    step="0.01"
-                    min="0"
-                  />
+              <div key={index} className="border border-gray-200 rounded-lg p-3 bg-gray-50">
+                <div className="grid grid-cols-1 gap-2 mb-2">
+                  <div>
+                    <label className="text-xs font-semibold text-gray-600 mb-1 block">Size</label>
+                    <input
+                      type="text"
+                      placeholder="e.g., 1kg"
+                      value={size.size}
+                      onChange={(e) => handleSizeChange(index, 'size', e.target.value)}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 text-sm"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-xs font-semibold text-gray-600 mb-1 block">Price ($)</label>
+                    <input
+                      type="number"
+                      placeholder="e.g., 25.00"
+                      value={size.price}
+                      onChange={(e) => handleSizeChange(index, 'price', e.target.value)}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 text-sm"
+                      step="0.01"
+                      min="0"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-xs font-semibold text-gray-600 mb-1 block">Servings (optional)</label>
+                    <input
+                      type="text"
+                      placeholder="e.g., 3-4 servings"
+                      value={size.servings}
+                      onChange={(e) => handleSizeChange(index, 'servings', e.target.value)}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 text-sm"
+                    />
+                  </div>
                 </div>
                 {formData.sizes.length > 1 && (
                   <button
                     type="button"
                     onClick={() => removeSizeOption(index)}
-                    className="bg-red-500 text-white px-3 py-2 rounded-lg hover:bg-red-600 transition text-sm"
+                    className="w-full bg-red-500 text-white px-3 py-2 rounded-lg hover:bg-red-600 transition text-sm font-semibold"
                   >
-                    Remove
+                    Remove Size Option
                   </button>
                 )}
               </div>
