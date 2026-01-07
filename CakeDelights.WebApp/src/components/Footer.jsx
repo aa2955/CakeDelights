@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { FaInstagram, FaFacebook } from 'react-icons/fa'
 import { useData } from '../contexts/DataContext'
 
 export default function Footer() {
@@ -6,21 +7,21 @@ export default function Footer() {
   const [showEditModal, setShowEditModal] = useState(false)
 
   return (
-    <footer className="gradient-pink mt-12">
-      <div className="max-w-6xl mx-auto px-4 py-8">
+    <footer className="bg-gradient-to-r from-pink-500 via-pink-600 to-red-500 mt-12">
+      <div className="max-w-6xl mx-auto px-4 py-3">
         {/* Social Media */}
-        <div className="text-center mb-6">
-          <h3 className="text-2xl font-bold text-white mb-6">Follow Us</h3>
-          <div className="flex justify-center gap-6">
+        <div className="text-center">
+          <div className="flex justify-center gap-4 items-center">
+            <span className="text-sm text-white font-medium">Follow Us</span>
             {socialLinks.instagram && (
               <a
                 href={socialLinks.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-16 h-16 rounded-full bg-white flex items-center justify-center text-pink-600 font-bold text-2xl hover:scale-110 transition"
+                className="w-10 h-10 rounded-full bg-white bg-opacity-20 border border-white border-opacity-30 backdrop-blur-sm flex items-center justify-center text-white text-lg hover:scale-110 hover:bg-opacity-30 transition-all duration-300 group"
                 title="Instagram"
               >
-                📷
+                <FaInstagram className="group-hover:text-pink-300" />
               </a>
             )}
             {socialLinks.facebook && (
@@ -28,37 +29,21 @@ export default function Footer() {
                 href={socialLinks.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-16 h-16 rounded-full bg-white flex items-center justify-center text-pink-600 font-bold text-2xl hover:scale-110 transition"
+                className="w-10 h-10 rounded-full bg-white bg-opacity-20 border border-white border-opacity-30 backdrop-blur-sm flex items-center justify-center text-white text-lg hover:scale-110 hover:bg-opacity-30 transition-all duration-300 group"
                 title="Facebook"
               >
-                👍
+                <FaFacebook className="group-hover:text-blue-300" />
               </a>
             )}
-            {!socialLinks.instagram && !socialLinks.facebook && (
-              <p className="text-white">Social media links coming soon</p>
+            {isAdmin && (
+              <button
+                onClick={() => setShowEditModal(true)}
+                className="text-white text-xs px-3 py-1 rounded border border-white border-opacity-50 hover:bg-white hover:bg-opacity-10 transition ml-2"
+              >
+                Edit
+              </button>
             )}
           </div>
-        </div>
-
-        {isAdmin && (
-          <div className="text-center mb-4">
-            <button
-              onClick={() => setShowEditModal(true)}
-              className="bg-white text-pink-600 px-4 py-2 rounded-lg font-semibold hover:bg-pink-50 transition"
-            >
-              Edit Social Links
-            </button>
-          </div>
-        )}
-
-        {/* Copyright */}
-        <div className="text-center pt-4 border-t border-pink-400">
-          <p className="text-white text-sm">
-            © 2024 Cake Delights. All rights reserved. 🍰
-          </p>
-          <p className="text-pink-100 text-xs mt-1">
-            100% Vegetarian • Eggless • No Onion • No Garlic
-          </p>
         </div>
       </div>
 

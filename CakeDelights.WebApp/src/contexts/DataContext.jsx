@@ -25,9 +25,9 @@ const SAMPLE_BAKERY_ITEMS = [
     flavors: 'Vanilla',
     servings: '6-8 servings',
     sizes: [
-      { size: '500g', price: 25 },
-      { size: '1kg', price: 45 },
-      { size: '2kg', price: 85 }
+      { size: '500g', price: 25, servings: '3-4 servings' },
+      { size: '1kg', price: 45, servings: '6-8 servings' },
+      { size: '2kg', price: 85, servings: '12-15 servings' }
     ],
     image: null
   },
@@ -40,9 +40,9 @@ const SAMPLE_BAKERY_ITEMS = [
     flavors: 'Dark Chocolate',
     servings: '6-8 servings',
     sizes: [
-      { size: '500g', price: 28 },
-      { size: '1kg', price: 50 },
-      { size: '2kg', price: 95 }
+      { size: '500g', price: 28, servings: '3-4 servings' },
+      { size: '1kg', price: 50, servings: '6-8 servings' },
+      { size: '2kg', price: 95, servings: '12-15 servings' }
     ],
     image: null
   },
@@ -55,9 +55,9 @@ const SAMPLE_BAKERY_ITEMS = [
     flavors: 'Strawberry, Vanilla',
     servings: '6-8 servings',
     sizes: [
-      { size: '500g', price: 30 },
-      { size: '1kg', price: 55 },
-      { size: '2kg', price: 105 }
+      { size: '500g', price: 30, servings: '3-4 servings' },
+      { size: '1kg', price: 55, servings: '6-8 servings' },
+      { size: '2kg', price: 105, servings: '12-15 servings' }
     ],
     image: null
   },
@@ -70,8 +70,8 @@ const SAMPLE_BAKERY_ITEMS = [
     flavors: 'Almond',
     servings: '12 pieces',
     sizes: [
-      { size: '250g', price: 12 },
-      { size: '500g', price: 20 }
+      { size: '250g', price: 12, servings: '6 pieces' },
+      { size: '500g', price: 20, servings: '12 pieces' }
     ],
     image: null
   },
@@ -84,8 +84,8 @@ const SAMPLE_BAKERY_ITEMS = [
     flavors: 'Chocolate Chip',
     servings: '12 cookies',
     sizes: [
-      { size: '250g', price: 10 },
-      { size: '500g', price: 18 }
+      { size: '250g', price: 10, servings: '6 cookies' },
+      { size: '500g', price: 18, servings: '12 cookies' }
     ],
     image: null
   }
