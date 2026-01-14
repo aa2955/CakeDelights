@@ -123,17 +123,12 @@ export function DataProvider({ children }) {
               ...docSnap.data()
             }))
             setMenuItems(items)
-            // Also cache in localStorage as fallback
-            localStorage.setItem('cakeDelightsMenuItems', JSON.stringify(items))
             setLoading(false)
           },
           (error) => {
-            console.warn('Error fetching from Firestore, using localStorage:', error)
-            // Fallback to localStorage if Firestore fails
-            const savedItems = localStorage.getItem('cakeDelightsMenuItems')
-            if (savedItems) {
-              setMenuItems(JSON.parse(savedItems))
-            }
+            console.warn('Error fetching from Firestore:', error)
+            // Don't use localStorage for menu items - Firebase is the source of truth
+            // Just set loading to false and keep existing items
             setLoading(false)
           }
         )
@@ -145,6 +140,7 @@ export function DataProvider({ children }) {
           (docSnap) => {
             if (docSnap.exists()) {
               setSocialLinks(docSnap.data())
+              // Cache only small social links data
               localStorage.setItem('cakeDelightsSocialLinks', JSON.stringify(docSnap.data()))
             }
           },
