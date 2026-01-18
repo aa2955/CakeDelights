@@ -2,7 +2,9 @@ import { useState } from 'react'
 import { DataProvider, useData } from './contexts/DataContext'
 import Header from './components/Header'
 import Navigation from './components/Navigation'
+import ContactBanner from './components/ContactBanner'
 import MenuSection from './components/MenuSection'
+import CateringMenuSection from './components/CateringMenuSection'
 import Footer from './components/Footer'
 import AdminPanel from './components/admin/AdminPanel'
 import LoginModal from './components/admin/LoginModal'
@@ -41,10 +43,13 @@ function AppContent() {
     <div className="min-h-screen bg-gradient-pink-light flex flex-col relative">
       <Header onAdminClick={handleAdminClick} isAdmin={isAdmin} />
       {!showAdminPanel && <Navigation activeSection={activeSection} setActiveSection={setActiveSection} />}
+      {!showAdminPanel && <ContactBanner />}
       
       <main className="flex-grow">
         {showAdminPanel ? (
           <AdminPanel onClose={() => setShowAdminPanel(false)} />
+        ) : activeSection === 'catering' ? (
+          <CateringMenuSection />
         ) : (
           <MenuSection section={activeSection} />
         )}

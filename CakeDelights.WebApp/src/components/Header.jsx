@@ -7,11 +7,11 @@ export default function Header({ onAdminClick, isAdmin }) {
 
   return (
     <header className="bg-gradient-to-r from-white via-pink-50 to-white border-b border-pink-200 backdrop-blur-sm">
-      <div className="max-w-7xl mx-auto px-4 py-5">
-        <div className="flex items-center justify-between gap-8">
+      <div className="max-w-6xl mx-auto px-4 py-5">
+        <div className="flex items-center justify-between gap-2 sm:gap-8">
           {/* Left: Logo and Branding */}
-          <div className="flex items-center gap-4 flex-1">
-            <div className="relative w-16 h-16 flex-shrink-0 transition-all duration-500 hover:scale-110 cursor-pointer group">
+          <div className="flex items-center gap-2 sm:gap-4 flex-1 min-w-0">
+            <div className="relative w-12 sm:w-16 h-12 sm:h-16 flex-shrink-0 transition-all duration-500 hover:scale-110 cursor-pointer group">
               <div className="absolute inset-0 bg-gradient-to-br from-pink-200 to-red-200 rounded-full opacity-0 group-hover:opacity-50 blur-lg transition-all duration-500"></div>
               <img 
                 src={logoImage} 
@@ -19,25 +19,25 @@ export default function Header({ onAdminClick, isAdmin }) {
                 className="w-full h-full object-contain relative"
               />
             </div>
-            <div className="flex flex-col justify-center">
-              <h1 className="text-4xl bg-gradient-to-r from-pink-600 via-pink-500 to-red-500 bg-clip-text text-transparent leading-tight" style={{ fontFamily: "'Playfair Display', serif", fontWeight: '800' }}>
+            <div className="hidden sm:flex flex-col justify-center min-w-0">
+              <h1 className="text-2xl sm:text-4xl bg-gradient-to-r from-pink-600 via-pink-500 to-red-500 bg-clip-text text-transparent leading-tight truncate" style={{ fontFamily: "'Playfair Display', serif", fontWeight: '800' }}>
                 Cake Delights
               </h1>
-              <p className="text-xs text-gray-500 tracking-widest uppercase font-bold">
-                Artisan Baked Goodness
+              <p className="text-xs text-gray-500 tracking-widest uppercase font-bold hidden sm:block">
+                Delight In Your Reality
               </p>
             </div>
           </div>
 
           {/* Center: Vegetarian Badge and Social Links */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 sm:gap-4 flex-shrink-0">
             {/* Vegetarian Badge */}
-            <div className="group bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200 text-green-800 px-4 py-1.5 rounded-full text-xs font-bold shadow-sm hover:shadow-lg hover:border-green-300 transition-all duration-300 cursor-default">
-              <span className="inline-block transition-transform group-hover:scale-125 group-hover:rotate-12 origin-center">🥬</span> 100% Vegetarian
+            <div className="flex group bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200 text-green-800 px-3 sm:px-4 py-1.5 rounded-full text-xs font-bold shadow-sm hover:shadow-lg hover:border-green-300 transition-all duration-300 cursor-default">
+              <span className="inline-block transition-transform group-hover:scale-125 group-hover:rotate-12 origin-center">🥬</span> <span className="hidden sm:inline ml-1">100% Vegetarian</span>
             </div>
             
             {/* Social Links */}
-            <div className="flex gap-2.5">
+            <div className="flex gap-2 sm:gap-2.5">
               {socialLinks?.instagram && (
                 <a
                   href={socialLinks.instagram}
@@ -69,8 +69,8 @@ export default function Header({ onAdminClick, isAdmin }) {
             </div>
           </div>
 
-          {/* Right: Empty space */}
-          <div className="w-12"></div>
+          {/* Right: Empty space - Hidden on mobile */}
+          <div className="hidden sm:block w-12"></div>
         </div>
       </div>
 
