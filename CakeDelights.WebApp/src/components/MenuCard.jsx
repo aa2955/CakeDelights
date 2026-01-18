@@ -6,6 +6,7 @@ import ImageModal from './ImageModal'
 export default function MenuCard({ item }) {
   const { isAdmin, deleteMenuItem } = useData()
   const [showImageModal, setShowImageModal] = useState(false)
+  const [expandDescription, setExpandDescription] = useState(false)
 
   const handleDelete = () => {
     if (window.confirm(`Are you sure you want to delete "${item.name}"?`)) {
@@ -45,9 +46,21 @@ export default function MenuCard({ item }) {
           </h3>
 
           {/* Description */}
-          <p className="text-gray-600 text-sm mb-3 line-clamp-2">
-            {item.description}
-          </p>
+          {item.description && (
+            <div className="mb-3">
+              <p className={`text-gray-600 text-sm ${expandDescription ? '' : 'line-clamp-2'}`}>
+                {item.description}
+              </p>
+              {item.description.length > 100 && (
+                <button
+                  onClick={() => setExpandDescription(!expandDescription)}
+                  className="text-pink-600 text-sm font-semibold hover:text-pink-700 mt-1 transition"
+                >
+                  {expandDescription ? 'Read Less' : 'Read More'}
+                </button>
+              )}
+            </div>
+          )}
 
           {/* Flavors */}
           {item.flavors && (

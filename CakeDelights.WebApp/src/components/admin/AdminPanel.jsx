@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { useData } from '../../contexts/DataContext'
 import ItemForm from './ItemForm'
 import ItemList from './ItemList'
+import CateringItemForm from './CateringItemForm'
+import CateringItemList from './CateringItemList'
 
 export default function AdminPanel({ onClose }) {
   const [activeTab, setActiveTab] = useState('bakery')
@@ -29,7 +31,7 @@ export default function AdminPanel({ onClose }) {
   }
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8 min-h-screen">
+    <div className="max-w-7xl mx-auto px-4 py-8 min-h-screen">
       <div className="mb-8 flex justify-between items-center">
         <div>
           <h1 className="text-4xl font-bold text-pink-700 mb-2">Admin Panel</h1>
@@ -81,25 +83,46 @@ export default function AdminPanel({ onClose }) {
         </button>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        {/* Form Section */}
-        <div className="lg:col-span-1">
-          <ItemForm
-            section={activeTab}
-            editingItem={editingItem}
-            onEditingComplete={handleCancelEdit}
-          />
-        </div>
+      {activeTab === 'bakery' ? (
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* Form Section */}
+          <div className="lg:col-span-1">
+            <ItemForm
+              section={activeTab}
+              editingItem={editingItem}
+              onEditingComplete={handleCancelEdit}
+            />
+          </div>
 
-        {/* Items List Section */}
-        <div className="lg:col-span-2">
-          <ItemList
-            items={currentItems}
-            onEdit={handleEdit}
-            editingId={editingId}
-          />
+          {/* Items List Section */}
+          <div className="lg:col-span-2">
+            <ItemList
+              items={currentItems}
+              onEdit={handleEdit}
+              editingId={editingId}
+            />
+          </div>
         </div>
-      </div>
+      ) : (
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* Form Section */}
+          <div className="lg:col-span-1">
+            <CateringItemForm
+              editingItem={editingItem}
+              onEditingComplete={handleCancelEdit}
+            />
+          </div>
+
+          {/* Items List Section */}
+          <div className="lg:col-span-2">
+            <CateringItemList
+              items={currentItems}
+              onEdit={handleEdit}
+              editingId={editingId}
+            />
+          </div>
+        </div>
+      )}
     </div>
   )
 }
